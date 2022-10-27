@@ -1,16 +1,33 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, FlatList } from "react-native";
 import styles from './Categories.styles';
 import { colors } from "../../../assets/styles";
 
-const Categories = () => {
+const Categories = ({ data }) => {
+
+    const renderCategoriesItem = ({ item }) => {
+        return (
+            <Text style={[styles.discoverCategoryText, {
+                color: item.id === 'discover-categories-1' ? 
+                colors.MAIN_COLORS.ORANGE : 
+                styles.discoverCategoryText,
+                marginLeft: item.id === 'discover-categories-1' ?
+                20 : 0 }]
+            }>
+                {item.text}
+            </Text>
+        )
+    }
 
     return (
         <View style={styles.discoverCategoriesWrapper}>
-            <Text style={[styles.discoverCategoryText, { color: colors.MAIN_COLORS.ORANGE }]}>All</Text>
-            <Text style={styles.discoverCategoryText}>Destinations</Text>
-            <Text style={styles.discoverCategoryText}>Cities</Text>
-            <Text style={styles.discoverCategoryText}>Experiences</Text>
+            <FlatList
+                data={data}
+                renderItem={renderCategoriesItem}
+                keyExtractor={item => item.id}
+                horizontal
+                showsHorizontalScrollIndicator={false}
+            />
         </View>
     )
 }

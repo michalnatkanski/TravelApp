@@ -5,7 +5,6 @@ export default StyleSheet.create({
     discoverCategoriesWrapper: {
         flexDirection: 'row',
         marginTop: 20,
-        marginHorizontal: 20,
     },
     discoverCategoryText: {
         marginRight: 30,
